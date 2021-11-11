@@ -52,6 +52,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   });
 
   Chara.associate = (db) => {
@@ -59,7 +63,7 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
       foreignKey: { allowNull: false },
     });
-    Chara.belongsToMany(db.Tag, { through: db.CharaTag });
+    Chara.belongsToMany(db.Tag, { through: 'CharaTag' });
   };
 
   return Chara;
