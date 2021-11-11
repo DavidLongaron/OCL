@@ -1,5 +1,8 @@
 import "./CharaList.css";
 import CharaCard from "../CharaCard/CharaCard";
+
+
+
 const CharaList=(props)=>{
 
   console.log(props);
@@ -9,9 +12,11 @@ const CharaList=(props)=>{
     
     }) 
         return(
+            
             <div className="border-2 border-black flex">
             {charasArr.filter(chara=> chara!==undefined)}
             </div>
+                
         )
     }
     

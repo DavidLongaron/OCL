@@ -1,4 +1,11 @@
 import "./CharaCard.css";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Routes
+} from 'react-router-dom';
+import CharaProfile from "../CharaProfile/CharaProfile";
 
 const CharaCard=(props)=>{
     const tags= props.chara.Tags;
@@ -8,6 +15,8 @@ const CharaCard=(props)=>{
        })
 
     return(
+        <Router>
+        <Link to={`/chara/${props.chara.id}`}>   
         <div className="flex border-2 border-green-400 box-border ">
             <div className="chara-avatar">
                 <img alt="icon" src={props.chara.img} />
@@ -19,6 +28,12 @@ const CharaCard=(props)=>{
             {tagsName}
          </div>
         </div>
+        </Link>
+            <Routes>
+            <Route path="/chara/" element={<CharaProfile chara={props.chara} />}>
+            </Route>
+            </Routes>       
+        </Router>
         
       
 
