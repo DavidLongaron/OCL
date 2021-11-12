@@ -1,21 +1,23 @@
 import "./CharaCard.css";
 import {
-    BrowserRouter as Router,
     Route,
     Link,
     Routes
 } from 'react-router-dom';
 import CharaProfile from "../CharaProfile/CharaProfile";
+import { useContext } from 'react';
+import {charaContext} from '../App'
 
 const CharaCard=(props)=>{
     const tags= props.chara.Tags;
-    const tagsName= tags.map(tag=>{ 
-        return <button>{tag.tagName}</button>
-        
-       })
-
+    const tagsName= tags.map(tag=>{return <button>{tag.tagName}</button>})
+    const [charaData, setCharaData] =useContext(charaContext);
+    const changeCharaHandler= e=>{
+        setCharaData(props.chara)
+    }
+    
     return(
-        <Router>
+        <div onClick={changeCharaHandler}>
         <Link to={`/chara/${props.chara.id}`}>   
         <div className="flex border-2 border-green-400 box-border ">
             <div className="chara-avatar">
@@ -30,10 +32,11 @@ const CharaCard=(props)=>{
         </div>
         </Link>
             <Routes>
-            <Route path="/chara/" element={<CharaProfile chara={props.chara} />}>
+            <Route path={`/chara/${props.chara.id}`} element={<CharaProfile chara={props.chara} />}>
             </Route>
-            </Routes>       
-        </Router>
+            </Routes>   
+            </div>    
+        
         
       
 

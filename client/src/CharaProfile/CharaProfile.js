@@ -1,6 +1,7 @@
 import React from 'react';
  
 function CharaProfile (props){
+    console.log(props.chara)
     return (
     
     <div>

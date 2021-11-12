@@ -1,12 +1,11 @@
 import { useState } from "react";
 import ApiService from "../ApiServices"
+import { Link} from 'react-router-dom';
 const CreateCharaForm=()=>{
     const defaultData={UserId:"1",name:"", age:"", birthDay:"", occupation:"", likes:"", dislikes:"", physicalDescription:"", personality:"", background:"", setting:"", gender:"", img:"", tag:""};
     const [charaData,setCharaData ]= useState(defaultData);
     const sendChara =(e)=>{
 
-        //!Not updating because I'm calling the function from here?
-        
         e.preventDefault();
         ApiService.postChara(charaData);
         e.target.reset();
@@ -111,7 +110,7 @@ const CreateCharaForm=()=>{
             <input type="text" onChange={handleTagChange} value={charaData.tag} className=" border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800  "></input>
         </div>
        
-       <button className="block w-full bg-green-300 py-4 rounded hover:bg-green-600 transition duration-300">Create</button>
+        <Link to={`/`}> <button className="block w-full bg-green-300 py-4 rounded hover:bg-green-600 transition duration-300">Create</button> </Link>
        </form>
 
        </div>
