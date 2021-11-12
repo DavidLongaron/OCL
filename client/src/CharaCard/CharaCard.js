@@ -6,7 +6,6 @@ import {charaContext} from '../App'
 
 const CharaCard=(props)=>{
     const tags= props.chara.Tags;
-    console.log("Tags",tags);
     let counter=0;
     const tagsName= tags.map(tag=>{
         let tagName;

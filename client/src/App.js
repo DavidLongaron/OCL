@@ -1,6 +1,5 @@
 
 import './App.css';
-import CharaList from './CharaList/CharaList'
 import NavBar from './NavBar/NavBar';
 import {useState,useEffect, createContext} from 'react';
 import ApiService from './ApiServices.js';
@@ -8,6 +7,7 @@ import CreateCharaForm from './CreateCharaForm/CreateCharaForm';
 import CharaProfile from './CharaProfile/CharaProfile';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
+import SearchNavBar from './SearchNavBar/SearchNavBar';
 import {
   BrowserRouter as Router,
   Route,
@@ -42,8 +42,9 @@ const allCharas=[charas,setCharas];
     <Router>
       <charaContext.Provider value={[charaData,setCharaData]}>   
          <NavBar/>
+
     <Routes>
-            <Route path={`/`} element={<CharaList charas={charas} />}>
+            <Route path={`/`} element={<SearchNavBar charas={charas} />}>
             </Route>
             <Route path={`/chara/${charaData.id}`} element={<CharaProfile chara={charaData} />}>
             </Route>
