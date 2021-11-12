@@ -17,11 +17,18 @@ import {
 const defaultData={UserId:"1",name:"", age:"", birthDay:"", occupation:"", likes:"", dislikes:"", physicalDescription:"", personality:"", background:"", setting:"", gender:"", img:"", tag:"",id:""};
 export const charaContext= createContext({
   charaData:defaultData,
-  setCharaData: ()=>{}
+  setCharaData: ()=>{},
 });
+export const userContext= createContext({
+  user:"Guest",
+  setUser: ()=>{}
+})
 function App() {
+ 
   
   const [charaData,setCharaData]= useState(defaultData)
+  const [user,setUser]= useState("")
+   console.log(user);
   // const charaValue= useMemo(
   //   ()=> ({charaData,SetCharaData}),
   //   [charaData]
@@ -40,7 +47,8 @@ const allCharas=[charas,setCharas];
 
   return (
     <Router>
-      <charaContext.Provider value={[charaData,setCharaData]}>   
+      <charaContext.Provider value={[charaData,setCharaData]}>  
+      <userContext.Provider  value={[user,setUser]}>
          <NavBar/>
 
     <Routes>
@@ -54,7 +62,8 @@ const allCharas=[charas,setCharas];
             </Route>
             <Route path={`/signup`} element={<SignUp />}>
             </Route>
-   </Routes>       
+   </Routes>
+   </userContext.Provider>       
    </charaContext.Provider>
     </Router>
   );
