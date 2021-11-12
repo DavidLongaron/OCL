@@ -18,7 +18,7 @@ const getChara = async (req, res) => {
 const createChara = async (req, res) => {
   try {
     const {
-      tag,
+      Tags,
       name,
       age,
       birthDay,
@@ -43,16 +43,16 @@ const createChara = async (req, res) => {
       img,
       UserId,
     });
+    Tags.map(async (tag) => {
+      const savedTag = await db.Tag.findOne({ where: { tagName: tag } });
+      if (savedTag) {
+        await db.CharaTag.create({ CharaId: chara.id, TagId: savedTag.id });
+      } else {
+        const newTag = await db.Tag.create({ tagName: tag });
 
-    const savedTag = await db.Tag.findOne({ where: { tagName: tag } });
-    if (savedTag) {
-      await db.CharaTag.create({ CharaId: chara.id, TagId: savedTag.id });
-    } else {
-      const newTag = await db.Tag.create({ tagName: tag });
-
-      await db.CharaTag.create({ CharaId: chara.id, TagId: newTag.id });
-    }
-
+        await db.CharaTag.create({ CharaId: chara.id, TagId: newTag.id });
+      }
+    });
     res.status(201);
     res.send(chara);
   } catch (error) {

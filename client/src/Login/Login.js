@@ -2,7 +2,7 @@
 
 const Login=()=>{
 return(
-    <div className="min-h-screen flex items-center justify-center bg-green-600" >
+    <div className="min-h-screen flex items-center justify-center bg-green-600 rounded" >
         <div className="bg-white p-16 rounder shadow-2x1 w-1/3">
         <h2 className="text-3xl font-bold mb-10 text-green-800">Login</h2>
         <form className="space-y-8">

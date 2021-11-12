@@ -6,6 +6,8 @@ import {useState,useEffect, createContext} from 'react';
 import ApiService from './ApiServices.js';
 import CreateCharaForm from './CreateCharaForm/CreateCharaForm';
 import CharaProfile from './CharaProfile/CharaProfile';
+import Login from './Login/Login';
+import SignUp from './SignUp/SignUp';
 import {
   BrowserRouter as Router,
   Route,
@@ -33,7 +35,7 @@ function App() {
     })();
 
   },[]);
-
+const allCharas=[charas,setCharas];
 
 
   return (
@@ -45,7 +47,11 @@ function App() {
             </Route>
             <Route path={`/chara/${charaData.id}`} element={<CharaProfile chara={charaData} />}>
             </Route>
-            <Route path={`/createchara`} element={<CreateCharaForm chara={charaData} />}>
+            <Route path={`/createchara`} element={<CreateCharaForm allCharas={allCharas} />}>
+            </Route>
+            <Route path={`/login`} element={<Login />}>
+            </Route>
+            <Route path={`/signup`} element={<SignUp />}>
             </Route>
    </Routes>       
    </charaContext.Provider>
