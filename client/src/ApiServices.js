@@ -30,10 +30,19 @@ function createUser(body){
         body:JSON.stringify(body)
     });
 }
+function getUser(body){
+    return fetchRequest("/user",{
+        method: "GET",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(body)
+    });
 
+}
 
 const ApiService= {
-    getCharas,postChara,createUser
+    getCharas,postChara,createUser,getUser
 }
 
 export default ApiService;

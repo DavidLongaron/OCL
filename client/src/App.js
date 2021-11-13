@@ -20,15 +20,16 @@ export const charaContext= createContext({
   setCharaData: ()=>{},
 });
 export const userContext= createContext({
-  user:"Guest",
-  setUser: ()=>{}
+  user:{username:"guest",password:"1",email:"none"},
+  setUser: ()=>{},
+  login: (username,password)=>{/*login setUser(username,password)*/},
 })
 function App() {
  
   
   const [charaData,setCharaData]= useState(defaultData)
   const [user,setUser]= useState("")
-   console.log(user);
+
   // const charaValue= useMemo(
   //   ()=> ({charaData,SetCharaData}),
   //   [charaData]

@@ -13,7 +13,7 @@ const getUser = async (req, res) => {
   try {
     const user = await db.User.findOne({
       where: {
-        id: req.params.id,
+        username: req.body.username,
       },
       include: [{
         model: db.Chara,
