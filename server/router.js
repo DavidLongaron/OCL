@@ -15,6 +15,7 @@ router.post('/user', user.createUser);
 router.put('/user/:id', user.updateUser);
 router.delete('/user/:id', user.deleteUser);
 router.get('/userAll', user.getAllUser);
+router.put('/user/:id', user.updateFavorites);
 
 router.get('/tag', tag.getTag);
 router.post('/tag', tag.createTag);

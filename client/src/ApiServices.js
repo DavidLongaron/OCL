@@ -21,9 +21,19 @@ function postChara(body){
     });
 }
 
+function createUser(body){
+    return fetchRequest("/user",{
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(body)
+    });
+}
+
 
 const ApiService= {
-    getCharas,postChara,
+    getCharas,postChara,createUser
 }
 
 export default ApiService;

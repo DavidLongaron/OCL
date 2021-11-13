@@ -76,6 +76,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: { allowNull: false },
     });
     Chara.belongsToMany(db.Tag, { through: 'CharaTag' });
+    Chara.belongsToMany(db.User, { through: 'Favorite' });
   };
 
   return Chara;

@@ -69,6 +69,25 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const updateFavorites = async (req, res) => {
+  try {
+    const savedFavorite = await db.Favorite.findOne({
+      where: { UserId: req.params.id, CharaId: req.body.CharaId },
+    });
+    if (savedFavorite) {
+      await db.Favorite.destroy({ where: { UserId: req.params.id, CharaId: req.body.CharaId } });
+      res.send('Destroyed');
+      res.status(201);
+    } else {
+      await db.Favorite.create({ UserId: req.params.id, CharaId: req.body.CharaId });
+    }
+  } catch (error) {
+    console.log(error);
+    res.send(error);
+    res.status(500);
+  }
+};
+
 module.exports = {
-  getUser, createUser, updateUser, deleteUser, getAllUser,
+  getUser, createUser, updateUser, deleteUser, getAllUser, updateFavorites,
 };

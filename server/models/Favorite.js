@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const CharaTag = sequelize.define('CharaTag', {
-    TagId: {
+  const Favorite = sequelize.define('Favorite', {
+    UserId: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
@@ -9,5 +9,5 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  return CharaTag;
+  return Favorite;
 };
