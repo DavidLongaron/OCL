@@ -33,11 +33,11 @@ return(
         <form className="space-y-8" onSubmit={handleLogin2}>
          <div>
              <label className="block mb-1 text-green-600">Username</label>
-             <input type="text" name="username" value={user.username}  onChange={handleChange} className=" border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800  "></input>
+             <input type="text" name="username" value={loggedUser.username}  onChange={handleChange} className=" border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800  "></input>
          </div>
          <div>
              <label className="block mb-1 text-green-600">Password</label>
-             <input type="text" name="password" value={user.password} onChange={handleChange} className="hiddenText border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800"></input>
+             <input type="text" name="password" value={loggedUser.password} onChange={handleChange} className="hiddenText border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800"></input>
          </div>
         
         <button className="block w-full bg-green-300 py-4 rounded hover:bg-green-600 transition duration-300">Login</button>

@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import ApiService from "../ApiServices"
 import {useNavigate} from 'react-router-dom';
+import { userContext } from "../App";
 const CreateCharaForm=(props)=>{
-
-    const defaultData={UserId:"1",name:"", age:"", birthDay:"", occupation:"", likes:"", dislikes:"", physicalDescription:"", personality:"", background:"", setting:"", gender:"", img:"", Tags:[]};
-    const [charaData,setCharaData ]= useState(defaultData);
+    const [userData, setUserData] =useContext(userContext);
+    const defaultData={UserId:userData.id,name:"", age:"", birthDay:"", occupation:"", likes:"", dislikes:"", physicalDescription:"", personality:"", background:"", setting:"", gender:"", img:"", Tags:[]};
+    const [charaData, setCharaData]= useState(defaultData);
     const navigate= useNavigate();
-  
+
     const sendChara =(e)=>{
         
         e.preventDefault();
@@ -31,52 +32,12 @@ const CreateCharaForm=(props)=>{
        
         
     }
-    // function handleNameChange(e){
-    //     setCharaData({...charaData, name:e.target.value})
-    // }
-    // function handleAgeChange(e){
-    //     setCharaData({...charaData, age:e.target.value})
-    // }
-    // function handleBirthDayChange(e){
-    //     setCharaData({...charaData, birthDay:e.target.value})
-    // }
-    // function handleOccupationChange(e){
-    //     setCharaData({...charaData, occupation:e.target.value})
-    // }
-    // function handleLikesChange(e){
-    //     setCharaData({...charaData, likes:e.target.value})
-    // }
-    // function handleDislikesChange(e){
-    //     setCharaData({...charaData, dislikes:e.target.value})
-    // }
-    // function handlePhysicalDescriptionChange(e){
-    //     setCharaData({...charaData, physicalDescription:e.target.value})
-    // }
-    // function handlePersonalityChange(e){
-    //     setCharaData({...charaData,personality:e.target.value})
-    // }
-    // function handleBackgroundChange(e){
-    //     setCharaData({...charaData, background:e.target.value})
-    // }
-    // function handleSettingChange(e){
-    //     setCharaData({...charaData, setting:e.target.value})
-    // }
-    // function handleGenderChange(e){
-    //     setCharaData({...charaData, gender:e.target.value})
-    // }
-    // function handleImgChange(e){
-    //     setCharaData({...charaData, img:e.target.value})
-    // }
-    // function handleTagChange(e){
-    //     setCharaData({...charaData, Tags:[e.target.value]})
-    // }
-
-
+ 
  return(
    <div className="min-h-screen flex items-center justify-center bg-green-600  " >
        <div className="bg-white p-16 rounder shadow-2x1 w-1/3 border rounded mt-8" >
        <h2 className="text-3xl font-bold mb-10 text-green-800">Create a Character</h2>
-       <form className="space-y-8" onSubmit={(e)=>{navigate("/"); sendChara(e)}}>
+       <form className="space-y-8" onSubmit={(e)=>{sendChara(e); navigate("/");}}>
         <div>
             <label className="block mb-1 text-green-600">Name</label>
             <input type="text"name="name" onChange={handleChange} value={charaData.name} className=" border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800  "></input>

@@ -8,13 +8,14 @@ import CharaProfile from './CharaProfile/CharaProfile';
 import Login from './Login/Login';
 import SignUp from './SignUp/SignUp';
 import SearchNavBar from './SearchNavBar/SearchNavBar';
+import LoggedNavBar from './LoggedNavBar/LoggedNavBar';
 import {
   BrowserRouter as Router,
   Route,
   Link,
   Routes
 } from 'react-router-dom';
-const defaultData={UserId:"1",name:"", age:"", birthDay:"", occupation:"", likes:"", dislikes:"", physicalDescription:"", personality:"", background:"", setting:"", gender:"", img:"", tag:"",id:""};
+const defaultData={UserId:"",name:"", age:"", birthDay:"", occupation:"", likes:"", dislikes:"", physicalDescription:"", personality:"", background:"", setting:"", gender:"", img:"", tag:"",id:""};
 export const charaContext= createContext({
   charaData:defaultData,
   setCharaData: ()=>{},
@@ -43,14 +44,18 @@ function App() {
     })();
 
   },[]);
-const allCharas=[charas,setCharas];
-
-
+console.log(user);
+  const allCharas=[charas,setCharas];
+  let displayedNavBar;
+  const choosedNavBar=()=>{
+    user.username?displayedNavBar=<LoggedNavBar/>:displayedNavBar=<NavBar/>
+    return displayedNavBar;
+  }
   return (
     <Router>
       <charaContext.Provider value={[charaData,setCharaData]}>  
       <userContext.Provider  value={[user,setUser]}>
-         <NavBar/>
+         {choosedNavBar()}
 
     <Routes>
             <Route path={`/`} element={<SearchNavBar charas={charas} />}>

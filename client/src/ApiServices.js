@@ -31,18 +31,27 @@ function createUser(body){
     });
 }
 function getUser(body){
-    return fetchRequest("/user",{
-        method: "GET",
+    return fetchRequest("/getuser",{
+        method: "POST",
         headers:{
             "Content-Type": "application/json"
         },
         body:JSON.stringify(body)
-    });
+    });   
+}
 
+function updateFavorite(body,id){
+    return fetchRequest(`/upfavorites/${id}`,{
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(body)
+    });   
 }
 
 const ApiService= {
-    getCharas,postChara,createUser,getUser
+    getCharas, updateFavorite,postChara,createUser,getUser
 }
 
 export default ApiService;

@@ -6,8 +6,13 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   User.associate = (db) => {
-    User.hasMany(db.Chara);
-    User.belongsToMany(db.Chara, { through: 'Favorites' });
+    User.hasMany(db.Chara, {
+      as: 'characters',
+    });
+    User.belongsToMany(db.Chara, {
+      through: 'Favorite',
+      as: 'favorite',
+    });
   };
   return User;
 };
