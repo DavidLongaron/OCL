@@ -23,9 +23,6 @@ const getUser = async (req, res) => {
           model: db.Tag,
           attributes: ['tagName', 'id'],
         }],
-      }, {
-        model: db.Favorite,
-        as: 'favorites',
       },
       ],
     });

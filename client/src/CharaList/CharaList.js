@@ -11,11 +11,11 @@ const CharaList=(props)=>{
     
     }) 
         return(
-            <div>
-            <div className="border-2 border-black flex">
+           
+            <div className="mx-auto charaList w-3/4 flex flex-wrap my-12 bg-gradient-to-r from-green-400 to-green-600 overflow-y-auto rounded">
             {charasArr.filter(chara=> chara!==undefined)}
             </div>
-            </div>
+           
                 
         )
     }

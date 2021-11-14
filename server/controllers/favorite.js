@@ -25,9 +25,10 @@ const updateFavorite = async (req, res) => {
 
 const getFavorite = async (req, res) => {
   try {
-    const favorites = await db.Favorite.findOne({where:
+    const savedFavorite = await db.Favorite.findOne({
+      where: { UserId: req.params.id, CharaId: req.body.id },
     });
-    res.send(favorites);
+    res.send(savedFavorite);
   } catch (error) {
     res.status(500);
     console.log(error);

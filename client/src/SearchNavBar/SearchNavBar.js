@@ -57,7 +57,9 @@ const SearchNavBar = (props) => {
                     </div>
                 </nav>
             </div>
+            <div >
             <CharaList charas={tagSearched.length ? filteredCharas : props.charas} />
+            </div>
         </div>
     )
 

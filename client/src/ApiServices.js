@@ -50,8 +50,18 @@ function updateFavorite(body,id){
     });   
 }
 
+function getFavorite(body,id){
+    return fetchRequest(`/upfavorites/${id}`,{
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json"
+        },
+        body:JSON.stringify(body)
+    });
+}
+
 const ApiService= {
-    getCharas, updateFavorite,postChara,createUser,getUser
+    getCharas, updateFavorite,postChara,createUser,getUser, getFavorite
 }
 
 export default ApiService;

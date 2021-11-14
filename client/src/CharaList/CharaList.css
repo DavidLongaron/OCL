@@ -1,0 +1,25 @@
+.charaList{
+    height: 60vh;
+    
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.charaList::-webkit-scrollbar{
+  
+
+    width: 20px;
+
+}
+
+.charaList::-webkit-scrollbar-thumb{
+  
+    background: #69ddad7c;
+    border-radius: 5px;
+
+}
+.charaList::-webkit-scrollbar-track{
+  
+    
+    border-radius: 5px;
+
+}
