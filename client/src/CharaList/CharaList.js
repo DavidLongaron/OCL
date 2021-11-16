@@ -11,13 +11,13 @@ const CharaList = (props) => {
     //     return favorite;
     // }
     // const [user, setUser] = useContext(userContext);
-    const charasArr = props.charas.map((chara) => {
+    const charasArr = props.charas.map((chara,i) => {
   
         // if (user) {
         //     const favoriteStatus =  searchFavorite(chara.id, user.id)
         //     console.log(favoriteStatus)
         // }
-        return <CharaCard key={chara.id} chara={chara} charasStatus={props.charasStatus} />
+        return <CharaCard key={i} chara={chara} charasStatus={props.charasStatus} />
 
     })
     // .filter(chara => chara !== undefined)

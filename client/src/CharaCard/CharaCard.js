@@ -50,6 +50,7 @@ const CharaCard = (props) => {
 
     useEffect(() => {
         console.log(user);
+        console.log(ogList);
       
         // (() => {
             if(!user.id){ setFavorited(false)}

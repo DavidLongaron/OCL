@@ -30,7 +30,7 @@ function App() {
   
   const [charaData,setCharaData]= useState(defaultData)
   const [user,setUser]= useState("")
-
+  const [charaFormUp,setCharaFormUp]= useState(false);
   // const charaValue= useMemo(
   //   ()=> ({charaData,SetCharaData}),
   //   [charaData]
@@ -41,11 +41,12 @@ function App() {
     (async function(){
       const charas= await ApiService.getCharas();
       setCharas(charas);
+      console.log("CHARAADASD",charas);
     })();
 
-  },[]);
+  },[charaFormUp]);
 console.log(user);
-  const allCharas=[charas,setCharas];
+  // const allCharas=[charas,setCharas];
   let displayedNavBar;
   const choosedNavBar=()=>{
     user.username?displayedNavBar=<LoggedNavBar/>:displayedNavBar=<NavBar/>
@@ -62,7 +63,7 @@ console.log(user);
             </Route>
             <Route path={`/chara/${charaData.id}`} element={<CharaProfile chara={charaData} />}>
             </Route>
-            <Route path={`/createchara`} element={<CreateCharaForm allCharas={allCharas} />}>
+            <Route path={`/createchara`} element={<CreateCharaForm allCharas={[charas,setCharas]} setCharaFormUp={setCharaFormUp} charaFormUp={charaFormUp} />}>
             </Route>
             <Route path={`/login`} element={<Login />}>
             </Route>

@@ -7,15 +7,16 @@ const CreateCharaForm = (props) => {
     const defaultData = { UserId: userData.id, name: "", age: "", birthDay: "", occupation: "", likes: "", dislikes: "", physicalDescription: "", personality: "", background: "", setting: "", gender: "", img: "", Tags: [] };
     const [charaData, setCharaData] = useState(defaultData);
     const navigate = useNavigate();
-
+    const [charas, setCharas] = props.allCharas;
     const sendChara = (e) => {
 
         e.preventDefault();
         ApiService.postChara(charaData);
-        const [charas, setCharas] = props.allCharas;
+        
         console.log(charaData);
         setCharas([...charas, charaData]);
         setCharaData(defaultData);
+        props.setCharaFormUp(!props.charaFormUP);
 
     }
     function handleChange(e) {
@@ -88,7 +89,7 @@ const CreateCharaForm = (props) => {
                     </div>
                     <div>
                         <label className="block mb-1 text-green-600">Tags</label>
-                        <input type="text" name="Tags" onChange={handleChange} value={charaData.tag} className=" border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800  "></input>
+                        <input type="text" name="Tags" onChange={handleChange} value={charaData.Tags} className=" border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800  "></input>
                     </div>
 
                     <button className="block w-full mt-5 bg-green-300 py-4 rounded hover:bg-green-600 transition duration-300">Create</button>

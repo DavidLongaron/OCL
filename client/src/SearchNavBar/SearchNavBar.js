@@ -41,17 +41,19 @@ const SearchNavBar = ({ charas }) => {
         (async function () {
             if (user.id) {
                 const favs = await ApiService.getFavorite();
+                // console.log("API FAVS",favs)
                 const favChar = charas.map((char) => {
                     for (let el of favs) {
-
-                        if (el.UserId === user.id && el.CharaId === char.id) {
+                        // console.log("CHAR",char)
+                        // console.log("EL USER",el.UserId, "USER",user.id,"ELCHARA",el.CharaId,"CHAR",char.id)
+                        if (el.UserId+"" === user.id+"" && el.CharaId+"" === char.id+"") {
                             char.status = true;
-                        }
-                        else {
-                            char.status = false;
-                        }
+                            return char;
+                        }                           
                     }
+                    char.status = false
                     return char;
+                   
                 })
                 console.log(favChar);
                 setFavoriteCharas(favChar)
