@@ -23,6 +23,6 @@ router.put('/tag/:id', tag.updateTag);
 router.delete('/tag/:id', tag.deleteTag);
 
 router.post('/upfavorites/:id', favorite.updateFavorite);
-router.post('/favorites/:id', favorite.getFavorite);
+router.get('/favorites', favorite.getFavorite);
 
 module.exports = router;

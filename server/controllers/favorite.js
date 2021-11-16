@@ -6,7 +6,7 @@ const updateFavorite = async (req, res) => {
       where: { UserId: req.params.id, CharaId: req.body.id },
     });
     if (savedFavorite) {
-      await db.Favorite.destroy({ where: { UserId: Number(req.params.id), CharaId: req.body.id } });
+      await db.Favorite.destroy({ where: { UserId: Number(req.params.id), CharaId: Number(req.body.id) } });
       res.status(201);
     } else {
       const favorite = await db.Favorite.create({
@@ -25,9 +25,10 @@ const updateFavorite = async (req, res) => {
 
 const getFavorite = async (req, res) => {
   try {
-    const savedFavorite = await db.Favorite.findOne({
-      where: { UserId: req.params.id, CharaId: req.body.id },
-    });
+    const savedFavorite = await db.Favorite.findAll();
+
+    res.status(201);
+
     res.send(savedFavorite);
   } catch (error) {
     res.status(500);

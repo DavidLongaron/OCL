@@ -58,7 +58,7 @@ const createChara = async (req, res) => {
   } catch (error) {
     res.status(500);
     console.log(error);
-    res.send(error);
+    // res.send(error);
   }
 };
 

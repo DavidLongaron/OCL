@@ -1,37 +1,62 @@
 import { Link } from 'react-router-dom';
 import CharaList from '../CharaList/CharaList';
-import { useState } from 'react';
-const SearchNavBar = (props) => {
+import { useState, useContext, useEffect } from 'react';
+import ApiService from "../ApiServices";
+import { userContext } from "../App";
 
-    // const [charas, setCharas]=useState(props.charas);
+const SearchNavBar = ({ charas }) => {
+
     const [tagSearched, setTagSearched] = useState("");
     const [filteredCharas, setFilteredCharas] = useState([]);
+    const [favoritedCharas, setFavoriteCharas] = useState([]);
+    const [user, setUser] = useContext(userContext);
+    const [favoriteActive, setFavoriteActive] = useState(false);
 
     const handleTagSearchChange = (e) => {
         const search = e.target.value;
 
         setTagSearched(search)
 
-        const filtered = props.charas.filter((chara) => {
+        const filtered = charas.filter((chara) => {
             for (const el of chara.Tags) {
                 if (el.tagName === search) return true;
             }
             return false;
         })
 
-        setFilteredCharas(filtered.length ? filtered : props.charas)
+        setFilteredCharas(filtered.length ? filtered : charas)
     }
-    const submitTagSearch=(e)=>{
+    const submitTagSearch = (e) => {
         e.preventDefault();
-        const filtered = props.charas.filter((chara) => {
+        const filtered = charas.filter((chara) => {
             for (const el of chara.Tags) {
                 if (el.tagName === tagSearched) return true;
             }
             return false;
         })
 
-        setFilteredCharas(filtered.length ? filtered : props.charas)
+        setFilteredCharas(filtered.length ? filtered : charas)
     }
+    useEffect(() => {
+        (async function () {
+            if (user.id) {
+                const favs = await ApiService.getFavorite();
+                const favChar = charas.map((char) => {
+                    for (let el of favs) {
+                        // if(char.status) char.status=false; 
+                        if (el.UserId === user.id && el.CharaId === char.id) {
+                            char.status = true;
+                        }
+                    }
+                    return char;
+                })
+                setFavoriteCharas(favChar)
+            }
+            else {
+                setFavoriteActive(false);
+            }
+        })();
+    }, [user, charas,favoriteActive]);
 
     return (
         <div>
@@ -50,15 +75,22 @@ const SearchNavBar = (props) => {
                                     </form>
                                 </div>
                             </div>
+
                             <div className="flex items-center space-x-1">
-                                <Link to="/signup" className="py-2 px-3 text-white bg-green-600 rounded-lg shadow hover:bg-green-400 transition duration-300">Favorites</Link>
+                                <button onClick={() => { setFavoriteActive(!favoriteActive) }} className="py-2 px-3 text-white bg-green-600 rounded-lg shadow hover:bg-green-400 transition duration-300">{favoriteActive ? "All" : "Favorites"}</button>
                             </div>
                         </div>
                     </div>
                 </nav>
             </div>
             <div >
-            <CharaList charas={tagSearched.length ? filteredCharas : props.charas} />
+                <CharaList charas={(() => {
+                    if (favoriteActive){ 
+                        console.log("FAVACTIVE",favoriteActive)
+                        return favoritedCharas.filter(chara => chara.status===true)}
+                    else if (tagSearched.length){ return filteredCharas}
+                    else {return charas}
+                })()} />
             </div>
         </div>
     )
