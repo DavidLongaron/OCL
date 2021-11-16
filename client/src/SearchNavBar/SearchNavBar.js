@@ -43,17 +43,21 @@ const SearchNavBar = ({ charas }) => {
                 const favs = await ApiService.getFavorite();
                 const favChar = charas.map((char) => {
                     for (let el of favs) {
-                        // if(char.status) char.status=false; 
+                          
                         if (el.UserId === user.id && el.CharaId === char.id) {
                             char.status = true;
+                        }
+                        else{
+                            char.status=false;
                         }
                     }
                     return char;
                 })
+                console.log(favChar);
                 setFavoriteCharas(favChar)
             }
             else {
-                setFavoriteActive(false);
+                setFavoriteCharas(charas);
             }
         })();
     }, [user, charas,favoriteActive]);
@@ -89,7 +93,7 @@ const SearchNavBar = ({ charas }) => {
                         console.log("FAVACTIVE",favoriteActive)
                         return favoritedCharas.filter(chara => chara.status===true)}
                     else if (tagSearched.length){ return filteredCharas}
-                    else {return charas}
+                    else {return favoritedCharas}
                 })()} />
             </div>
         </div>

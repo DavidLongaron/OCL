@@ -25,25 +25,24 @@ const CharaCard = (props) => {
     const handleFavorites = async () => {
         console.log(user)
         console.log(props.chara)
-         await ApiService.updateFavorite(props.chara, user.id);
+        await ApiService.updateFavorite(props.chara, user.id);
+        setFavorited(!favorited)
 
     }
-   
 
-    useEffect(()=>{
-        (async function () {
-            if (user.id && props.chara.id) {
-                const favoriteStatus = await ApiService.getFavorite();
-                for(let el of favoriteStatus){
-                    if(el.UserId===user.id&& el.CharaId===props.chara.id) setFavorited(true);
-                }
+
+    useEffect(() => {
+        (() => {
+            if (props.chara.status) {
+                setFavorited(true);
             }
-            else{
+            else {
                 setFavorited(false);
             }
         })();
-    },[user,props.chara.id]);
-    
+
+    }, [props.chara.status]);
+
 
     return (
         <div onClick={changeCharaHandler} className="flex mt-14 mx-5 h-48 w-96 border-2 box-border rounded bg-white">
