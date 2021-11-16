@@ -7,7 +7,7 @@ const updateFavorite = async (req, res) => {
     });
     if (savedFavorite) {
       await db.Favorite.destroy({ where: { UserId: Number(req.params.id), CharaId: Number(req.body.id) } });
-      res.status(201);
+      res.sendStatus(204);
     } else {
       const favorite = await db.Favorite.create({
         UserId: Number(req.params.id),

@@ -11,7 +11,7 @@ const SearchNavBar = ({ charas }) => {
     const [favoritedCharas, setFavoriteCharas] = useState([]);
     const [user, setUser] = useContext(userContext);
     const [favoriteActive, setFavoriteActive] = useState(false);
-
+    const [finalList, setFinalList] = useState([]);
     const handleTagSearchChange = (e) => {
         const search = e.target.value;
 
@@ -43,12 +43,12 @@ const SearchNavBar = ({ charas }) => {
                 const favs = await ApiService.getFavorite();
                 const favChar = charas.map((char) => {
                     for (let el of favs) {
-                          
+
                         if (el.UserId === user.id && el.CharaId === char.id) {
                             char.status = true;
                         }
-                        else{
-                            char.status=false;
+                        else {
+                            char.status = false;
                         }
                     }
                     return char;
@@ -60,7 +60,29 @@ const SearchNavBar = ({ charas }) => {
                 setFavoriteCharas(charas);
             }
         })();
-    }, [user, charas,favoriteActive]);
+
+
+
+
+    }, [user, charas]);
+
+    useEffect(() => {
+        if (favoriteActive) {
+            setFinalList(favoritedCharas.filter(chara => chara.status === true))
+        }
+        else if (tagSearched.length) { setFinalList(filteredCharas) }
+        else { setFinalList(favoritedCharas) }
+
+    }, [favoriteActive, favoritedCharas, tagSearched.length, filteredCharas])
+
+    // const handleCharaList = () => {
+    //     if (favoriteActive) {
+    //         console.log("FAVACTIVE", favoriteActive)
+    //         setFinalList(favoritedCharas.filter(chara => chara.status === true))
+    //     }
+    //     else if (tagSearched.length) { setFinalList(filteredCharas) }
+    //     else { setFinalList(favoritedCharas) }
+    // }
 
     return (
         <div>
@@ -88,13 +110,7 @@ const SearchNavBar = ({ charas }) => {
                 </nav>
             </div>
             <div >
-                <CharaList charas={(() => {
-                    if (favoriteActive){ 
-                        console.log("FAVACTIVE",favoriteActive)
-                        return favoritedCharas.filter(chara => chara.status===true)}
-                    else if (tagSearched.length){ return filteredCharas}
-                    else {return favoritedCharas}
-                })()} />
+                <CharaList charas={finalList} charasStatus={[favoritedCharas, setFavoriteCharas]} />
             </div>
         </div>
     )

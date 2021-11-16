@@ -17,7 +17,7 @@ const CharaList = (props) => {
         //     const favoriteStatus =  searchFavorite(chara.id, user.id)
         //     console.log(favoriteStatus)
         // }
-        return <CharaCard key={chara.id} chara={chara} />
+        return <CharaCard key={chara.id} chara={chara} charasStatus={props.charasStatus} />
 
     })
     // .filter(chara => chara !== undefined)
