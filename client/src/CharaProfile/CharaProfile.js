@@ -1,7 +1,6 @@
 import React from 'react';
 import "./CharaProfile.css";
 function CharaProfile(props) {
-    console.log(props.chara)
     const tags = props.chara.Tags.map((chara) => {
         return ` ${chara.tagName}`;
     });

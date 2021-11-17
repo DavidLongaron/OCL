@@ -1,5 +1,23 @@
 const db = require('../models/index');
 
+const getOneChara = async (req, res) => {
+  try {
+    const charas = await db.Chara.findOne({
+      where: {
+        name: req.body.name,
+      },
+      include: [{
+        model: db.Tag, attributes: ['tagName', 'id'],
+      }],
+    });
+    res.send(charas);
+  } catch (error) {
+    res.status(500);
+    console.log(error);
+    res.send(error);
+  }
+};
+
 const getChara = async (req, res) => {
   try {
     const charas = await db.Chara.findAll({
@@ -89,5 +107,5 @@ const deleteChara = async (req, res) => {
 };
 
 module.exports = {
-  getChara, createChara, updateChara, deleteChara,
+  getChara, createChara, updateChara, deleteChara, getOneChara,
 };

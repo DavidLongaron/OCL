@@ -8,20 +8,17 @@ const CreateCharaForm = (props) => {
     const [charaData, setCharaData] = useState(defaultData);
     const navigate = useNavigate();
     const [charas, setCharas] = props.allCharas;
-    const sendChara = (e) => {
+    const sendChara = async (e) => {
 
         e.preventDefault();
-        ApiService.postChara(charaData);
-        
-        console.log(charaData);
-        setCharas([...charas, charaData]);
+        await ApiService.postChara(charaData);
+        const newChar = await ApiService.getCharas()
+        setCharas(newChar);
         setCharaData(defaultData);
         props.setCharaFormUp(!props.charaFormUP);
 
     }
     function handleChange(e) {
-        // setCharaData({name:e.target.value,age:e.target.value,birthDay:e.target.value,occupation:e.target.value,likes:e.target.value,dislikes:e.target.value,physicalDescription:e.target.value,personality:e.target.value, background:e.target.value, setting:e.target.value, gender:e.target.value, img:e.target.value, Tags:[e.target.value] })
-
         if (e.target.name === "Tags") {
             const value = e.target.value.split(",");
             setCharaData({ ...charaData, [e.target.name]: value })
@@ -30,8 +27,6 @@ const CreateCharaForm = (props) => {
             const value = e.target.value;
             setCharaData({ ...charaData, [e.target.name]: value })
         }
-
-
     }
 
     return (

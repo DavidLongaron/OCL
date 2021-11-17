@@ -3,7 +3,7 @@ function fetchRequest(path, options) {
     return fetch(BASE_URL + path, options).then(res => res.status < 400 ? res : Promise.reject())
         .then(res => res.status !== 204 ? res.json() : res)
         .catch(err => {
-             console.log("Error:",err)
+            console.log("Error:", err)
         })
 }
 
@@ -13,6 +13,16 @@ function getCharas() {
 
 function postChara(body) {
     return fetchRequest('/chara', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+    });
+}
+
+function getOneChara(body) {
+    return fetchRequest('/onechara', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -57,7 +67,7 @@ function getFavorite() {
 }
 
 const ApiService = {
-    getCharas, updateFavorite, postChara, createUser, getUser, getFavorite
+    getCharas, getOneChara, updateFavorite, postChara, createUser, getUser, getFavorite
 }
 
 export default ApiService;

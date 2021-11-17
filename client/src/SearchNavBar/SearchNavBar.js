@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import CharaList from '../CharaList/CharaList';
 import { useState, useContext, useEffect } from 'react';
 import ApiService from "../ApiServices";
@@ -30,7 +29,7 @@ const SearchNavBar = ({ charas }) => {
         e.preventDefault();
         const filtered = charas.filter((chara) => {
             for (const el of chara.Tags) {
-                if (el.tagName === tagSearched) return true;
+                if (el.tagName === tagSearched || el === tagSearched) return true;
             }
             return false;
         })
@@ -41,31 +40,24 @@ const SearchNavBar = ({ charas }) => {
         (async function () {
             if (user.id) {
                 const favs = await ApiService.getFavorite();
-                // console.log("API FAVS",favs)
+
                 const favChar = charas.map((char) => {
                     for (let el of favs) {
-                        // console.log("CHAR",char)
-                        // console.log("EL USER",el.UserId, "USER",user.id,"ELCHARA",el.CharaId,"CHAR",char.id)
-                        if (el.UserId+"" === user.id+"" && el.CharaId+"" === char.id+"") {
+                        if (el.UserId + "" === user.id + "" && el.CharaId + "" === char.id + "") {
                             char.status = true;
                             return char;
-                        }                           
+                        }
                     }
                     char.status = false
                     return char;
-                   
+
                 })
-                console.log(favChar);
                 setFavoriteCharas(favChar)
             }
             else {
                 setFavoriteCharas(charas);
             }
         })();
-
-
-
-
     }, [user, charas]);
 
     useEffect(() => {
@@ -77,14 +69,6 @@ const SearchNavBar = ({ charas }) => {
 
     }, [favoriteActive, favoritedCharas, tagSearched.length, filteredCharas])
 
-    // const handleCharaList = () => {
-    //     if (favoriteActive) {
-    //         console.log("FAVACTIVE", favoriteActive)
-    //         setFinalList(favoritedCharas.filter(chara => chara.status === true))
-    //     }
-    //     else if (tagSearched.length) { setFinalList(filteredCharas) }
-    //     else { setFinalList(favoritedCharas) }
-    // }
 
     return (
         <div>

@@ -1,11 +1,6 @@
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Routes
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { userContext } from "../App";
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 
 const LoggedNavBar = () => {
   const [user, setUser, login] = useContext(userContext);

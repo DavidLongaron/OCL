@@ -31,11 +31,11 @@ const SignUp = () => {
                     </div>
                     <div>
                         <label className="block mb-1 text-green-600">Password</label>
-                        <input type="text" name="password" onChange={handleChange} value={newUser.password} className=" border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800  "></input>
+                        <input type="password" name="password" onChange={handleChange} value={newUser.password} className=" border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800  "></input>
                     </div>
                     <div>
                         <label className="block mb-1 text-green-600">Confirm Password</label>
-                        <input type="text" className=" border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800  "></input>
+                        <input type="password" className=" border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800  "></input>
                     </div>
 
                     <button className="block w-full bg-green-300 py-4 rounded hover:bg-green-600 transition duration-300">Create</button>

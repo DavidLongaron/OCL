@@ -10,6 +10,7 @@ router.get('/chara', chara.getChara);
 router.post('/chara', chara.createChara);
 router.put('/chara/:id', chara.updateChara);
 router.delete('/chara/:id', chara.deleteChara);
+router.post('/onechara', chara.getChara);
 
 router.post('/getuser', user.getUser);
 router.post('/user', user.createUser);

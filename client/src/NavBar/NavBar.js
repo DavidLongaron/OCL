@@ -1,8 +1,5 @@
 import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Routes
+  Link
 } from 'react-router-dom';
 
 const NavBar = () => {

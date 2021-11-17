@@ -1,26 +1,11 @@
 import "./CharaList.css";
 import CharaCard from "../CharaCard/CharaCard";
-// import ApiService from "../ApiServices";
-// import { useContext, useState } from 'react';
-// import { userContext } from "../App";
-
 const CharaList = (props) => {
 
-    // const searchFavorite = async (chara, id) => {
-    //     const favorite = await ApiService.getFavorite(chara, id)
-    //     return favorite;
-    // }
-    // const [user, setUser] = useContext(userContext);
-    const charasArr = props.charas.map((chara,i) => {
-  
-        // if (user) {
-        //     const favoriteStatus =  searchFavorite(chara.id, user.id)
-        //     console.log(favoriteStatus)
-        // }
+    const charasArr = props.charas.map((chara, i) => {
         return <CharaCard key={i} chara={chara} charasStatus={props.charasStatus} />
-
     })
-    // .filter(chara => chara !== undefined)
+
 
     return (
 

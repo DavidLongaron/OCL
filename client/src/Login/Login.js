@@ -11,9 +11,7 @@ const Login = () => {
     const [loggedUser, setLoggedUser] = useState({ username: "", password: "" })
     const handleLogin = async (e) => {
         e.preventDefault();
-        console.log("working");
         const logUser = await ApiService.getUser(loggedUser);
-        console.log(logUser)
         setUser(logUser);
         navigate("/");
 
@@ -38,7 +36,7 @@ const Login = () => {
                     </div>
                     <div>
                         <label className="block mb-1 text-green-600">Password</label>
-                        <input type="text" name="password" value={loggedUser.password} onChange={handleChange} className="hiddenText border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800"></input>
+                        <input type="password" name="password" value={loggedUser.password} onChange={handleChange} className="hiddenText border-2 border-gray-200 p-2 rounded outline-none focus:border-green-800"></input>
                     </div>
 
                     <button className="block w-full bg-green-300 py-4 rounded hover:bg-green-600 transition duration-300">Login</button>
