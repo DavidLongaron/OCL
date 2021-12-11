@@ -53,3 +53,6 @@ npm install
 npm start
 ```
 
+# Tech Stack
+
+React, Craco, Express, Sequelize, PostgreSQL
