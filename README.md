@@ -1,6 +1,8 @@
 # OCL
 
-OCL is a Web App for cultural creators to store, categorize and share the original characters that they have created.
+OCL is a Web App for cultural creators to store, categorize by tags and share the original characters that they have created as well as search for others  people characters.
+
+
 ![OCL Home page](https://i.gyazo.com/6be7407efb193af930aec642a65f157e.png "Home page")
 
 # Back end (`/server` directory)
