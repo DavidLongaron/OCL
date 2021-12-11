@@ -35,7 +35,7 @@ npx nodemon index.js
 ```
 
 
-# Front end
+# Front end (`/client` directory)
 
 To run the front end:
 
