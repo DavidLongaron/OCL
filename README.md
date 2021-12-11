@@ -28,8 +28,6 @@ cd server
 npm install
 ```
 
-*   
-
 *   Once complete, run the server  with
 
 ```
