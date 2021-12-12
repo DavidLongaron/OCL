@@ -31,15 +31,7 @@ function getOneChara(body) {
     });
 }
 
-function createUser(body) {
-    return fetchRequest("/user", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(body)
-    });
-}
+
 function getUser(body) {
     return fetchRequest("/getuser", {
         method: "POST",
@@ -66,8 +58,6 @@ function getFavorite() {
     );
 }
 
-const ApiService = {
-    getCharas, getOneChara, updateFavorite, postChara, createUser, getUser, getFavorite
-}
+const ApiService={getFavorite,updateFavorite,getUser,getOneChara,postChara,getCharas}
 
 export default ApiService;

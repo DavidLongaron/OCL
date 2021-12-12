@@ -5,7 +5,7 @@ import { useContext, useState, useEffect } from 'react';
 import { charaContext } from '../App'
 import ApiService from "../ApiServices";
 const CharaCard = (props) => {
-    //! Ask about how to set favorites
+
     const tags = props.chara.Tags;
     let counter = 0;
     const tagsName = tags.map(tag => {
@@ -35,7 +35,7 @@ const CharaCard = (props) => {
         })
         setOgList(newList);
     }
-    
+
     useEffect(() => {
 
         if (!user.id) { setFavorited(false) }
