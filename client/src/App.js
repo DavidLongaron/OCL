@@ -30,7 +30,7 @@ function App() {
   const [charaData, setCharaData] = useState(defaultData)
   const [user, setUser] = useState("")
   const [charaFormUp, setCharaFormUp] = useState(false);
-
+  console.log(user);
   const [charas, setCharas] = useState([]);
   useEffect(() => {
 
